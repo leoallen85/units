@@ -1,6 +1,7 @@
 require 'quantity'
+require 'unit'
 
-describe Quantity do
+describe "Quantity" do
 
   it "can compare two quantities of the same unit" do
     expect(2.teaspoons).to eq(2.teaspoons)
@@ -31,5 +32,15 @@ describe Quantity do
     expect(2.inches).not_to eq(2.teaspoons)
     expect(2.tablespoons).not_to eq(4.feet)
   end
+
+  it "compares temperatures" do
+    expect(10.celsius).to eq(50.fahrenheit)
+    expect(50.fahrenheit).to eq(10.celsius)
+  end
+
+  it "cannot add intervals" do
+    expect{10.celsius + 1.celsius}.to raise_error(NoMethodError)
+  end
+
 end
 
